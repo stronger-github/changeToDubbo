@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%p %d [%t] %C{1}.%M(%L) | %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+
+		</filter>
+	</appender>
+
+	<appender name="ALL" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/new_consumer_provider_all.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.txt'" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%p %d [%t] %C{1}.%M(%L) | %m%n" />
+		</layout>
+	</appender>
+	
+		
+	<logger name="net">
+		<level value="error" />
+	</logger>
+	<logger name="org.apache">
+		<level value="INFO" />
+	</logger>
+	<logger name="org.hibernate">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="debug" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="error" />
+	</logger>
+	<logger name="org.springframework.jdbc.core">
+		<level value="DEBUG" />
+	</logger>
+	<logger name="org.displaytag">
+		<level value="error" />
+	</logger>
+	<logger name="net.sf.ehcache">
+		<level value="error" />
+	</logger>
+	<logger name="com.mchange.v2">
+		<level value="error" />
+	</logger>
+	<logger name="com.danga.MemCached">
+		<level value="error"></level>
+	</logger>
+	<logger name="java.sql">
+		<level value="DEBUG"></level>
+	</logger>
+	<logger name="org.mybatis">
+		<level value="DEBUG"></level>
+	</logger>
+	<logger name="org.apache.ibatis">
+		<level value="DEBUG"></level>
+	</logger>
+
+
+	<logger name="com.sixone">
+		<level value="DEBUG"></level>
+	</logger>
+
+	<appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+		<param name="locationInfo" value="true"/>
+		<appender-ref ref="STDOUT" />
+
+	</appender>
+	
+	
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="ASYNC" />
+		
+	</root>
+
+</log4j:configuration>
